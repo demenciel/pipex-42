@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 10:56:00 by acouture          #+#    #+#             */
-/*   Updated: 2023/02/27 15:17:20 by acouture         ###   ########.fr       */
+/*   Updated: 2023/02/27 15:47:35 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct  s_env {
     char    *path_str;
     int     fd1;
     int     fd2;
+    int     status;
 }               t_env;
 
 
@@ -31,7 +32,7 @@ void    struct_init(t_env *data);
 void    exec_cmd(char *cmd, t_env *data);
 void    pipex(char **av, t_env *data);
 void    child_one(t_env *data, int end_write, char *cmd);
-void    parent_pro(t_env *data, int end_write, char *cmd);
+void    child_two(t_env *data, int end_write, char *cmd);
 
 char    *env_string(char **env);
 char    *path_string(char *env);
