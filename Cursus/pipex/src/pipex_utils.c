@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 11:21:32 by acouture          #+#    #+#             */
-/*   Updated: 2023/02/28 15:05:54 by acouture         ###   ########.fr       */
+/*   Updated: 2023/02/28 15:14:12 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ char	*get_path_from_env(char *env)
 
 	path_start = ft_strnstr(env, "PATH=", ft_strlen(env));
 	if (!path_start)
-		perror("malloc");
+		malloc_fail();
 	path_start += 5;
 	path_end = ft_strnstr(path_start, "LOGNAME=", ft_strlen(path_start));
 	if (!path_end)
 		path_end = env + ft_strlen(env);
-	size = ft_strlen(path_end) - ft_strlen(path_start);
+	size = ft_strlen(path_start) - ft_strlen(path_end);
 	if (size < 0)
-		size *= -1;
+		return (NULL);
 	path = ft_substr(path_start, 0, size);
 	return (path);
 }
@@ -56,7 +56,7 @@ char	*env_string(char **env)
 		env_len += ft_strlen(env[i++]);
 	env_str = malloc(sizeof(char) * env_len + 1);
 	if (!env_str)
-		return (NULL);
+		malloc_fail();
 	env_str[0] = '\0';
 	i = 0;
 	while (env[i++])

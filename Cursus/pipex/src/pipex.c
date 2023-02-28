@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 10:54:28 by acouture          #+#    #+#             */
-/*   Updated: 2023/02/28 15:06:06 by acouture         ###   ########.fr       */
+/*   Updated: 2023/02/28 15:16:30 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,9 +105,6 @@ int	main(int ac, char **av, char **envp)
 	}
 	else
 		perror("Wrong argument count");
+	free(data->path_str);
 	free(data);
 }
-
-
-/// leaks créer par substr dans get_path_env
-/// 

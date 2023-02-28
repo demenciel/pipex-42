@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 10:56:00 by acouture          #+#    #+#             */
-/*   Updated: 2023/02/28 14:31:21 by acouture         ###   ########.fr       */
+/*   Updated: 2023/02/28 15:09:09 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void		file_fail(void);
 void		pipe_fail(void);
 void		fork_fail(void);
 void		dup_fail(void);
+void		malloc_fail(void);
 void		struct_init(t_env *data);
 void		exec_cmd(char *cmd, t_env *data);
 void		pipex(char **av, t_env *data);

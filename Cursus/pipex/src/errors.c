@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 11:04:18 by acouture          #+#    #+#             */
-/*   Updated: 2023/02/28 12:27:58 by acouture         ###   ########.fr       */
+/*   Updated: 2023/02/28 15:08:59 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,11 @@ void	fork_fail(void)
 void	dup_fail(void)
 {
 	perror("Dup failed");
+	exit(EXIT_FAILURE);
+}
+
+void	malloc_fail(void)
+{
+	perror("Malloc failed");
 	exit(EXIT_FAILURE);
 }
