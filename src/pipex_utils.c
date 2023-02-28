@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 11:21:32 by acouture          #+#    #+#             */
-/*   Updated: 2023/02/27 16:02:30 by acouture         ###   ########.fr       */
+/*   Updated: 2023/02/28 11:38:57 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ void	struct_init(t_env *data)
 	data->path_str = NULL;
 	data->fd1 = 0;
 	data->fd2 = 0;
-	data->status = 0;
+	data->child1_status = 0;
+	data->child2_status = 0;
 }

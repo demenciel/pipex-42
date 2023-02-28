@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 10:54:28 by acouture          #+#    #+#             */
-/*   Updated: 2023/02/27 16:04:35 by acouture         ###   ########.fr       */
+/*   Updated: 2023/02/28 11:48:22 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	exec_cmd(char *cmd, t_env *data)
 	{
 		flag = 0;
 		search_cmd = ft_strjoin(my_paths[i], my_cmd[0]);
-		if (access(my_cmd[0], 0) == 0)
+		if (access(search_cmd, 0) == 0)
 		{
 			if (execve(search_cmd, my_cmd, data->env_list) == -1)
 			{
@@ -49,16 +49,15 @@ void	child_one(t_env *data, int end_write, char *cmd)
 	if (dup2(data->fd1, STDIN_FILENO) < 0 || dup2(end_write, STDOUT_FILENO) < 0)
 		dup_fail();
 	close(data->fd1);
-	close(end_write);
 	exec_cmd(cmd, data);
 }
 
 void	child_two(t_env *data, int end_write, char *cmd)
 {
-	if (dup2(end_write, STDIN_FILENO) < 0 || dup2(data->fd2, STDOUT_FILENO) < 0)
+	if (dup2(end_write, STDIN_FILENO) == -1 || dup2(data->fd2, STDOUT_FILENO) ==
+		-1)
 		dup_fail();
 	close(data->fd2);
-	close(end_write);
 	exec_cmd(cmd, data);
 }
 
@@ -68,21 +67,31 @@ void	pipex(char **av, t_env *data)
 	pid_t	child2;
 	int		pipe_end[2];
 
-	pipe(pipe_end);
+	if (pipe(pipe_end) == -1)
+		pipe_fail();
 	child1 = fork();
 	if (child1 < 0)
 		fork_fail();
 	if (child1 == 0)
+	{
+		close(pipe_end[0]);
 		child_one(data, pipe_end[1], av[2]);
+	}
 	child2 = fork();
 	if (child2 < 0)
 		fork_fail();
 	if (child2 == 0)
+	{
+		close(pipe_end[1]);
 		child_two(data, pipe_end[0], av[3]);
-	close(pipe_end[0]);
-	close(pipe_end[1]);
-	waitpid(child1, &data->status, 0);
-	waitpid(child2, &data->status, 0);
+	}
+	else 
+	{
+		close(pipe_end[0]);
+		close(pipe_end[1]);
+		waitpid(child1, &data->child1_status, 0);
+		waitpid(child2, &data->child2_status, 0);
+	}
 }
 
 int	main(int ac, char **av, char **envp)

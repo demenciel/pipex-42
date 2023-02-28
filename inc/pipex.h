@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 10:56:00 by acouture          #+#    #+#             */
-/*   Updated: 2023/02/27 15:47:35 by acouture         ###   ########.fr       */
+/*   Updated: 2023/02/28 11:39:19 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ typedef struct  s_env {
     char    *path_str;
     int     fd1;
     int     fd2;
-    int     status;
+    int     child1_status;
+    int     child2_status;
 }               t_env;
 
 
