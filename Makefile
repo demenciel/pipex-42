@@ -6,7 +6,7 @@
 #    By: acouture <acouture@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/27 10:52:08 by acouture          #+#    #+#              #
-#    Updated: 2023/02/27 13:38:51 by acouture         ###   ########.fr        #
+#    Updated: 2023/02/28 15:37:32 by acouture         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,12 +37,12 @@ $(NAME): $(OBJS)
 	@echo $(CURSIVE)$(GRAY) "     - Making libft..." $(NONE)
 	@make -C $(LIBF_DIR)
 	@echo $(CURSIVE)$(GRAY) "     - Compiling $(NAME)..." $(NONE)
-	@gcc  $(OBJS) $(LIBFT) $(LINKS) -o $(NAME)
+	@gcc  $(FLAGS) $(OBJS) $(LIBFT) $(LINKS) -o $(NAME)
 	@echo $(GREEN)"- Compiled -"$(NONE)
 
 $(OBJS): $(SRC)
 	@echo $(CURSIVE)$(GRAY) "     - Making object files..." $(NONE)
-	@gcc -c $(SRC)
+	@gcc -c $(FLAGS) $(SRC)
 
 exe: all
 	@echo "     - Executing $(NAME)... \n"
